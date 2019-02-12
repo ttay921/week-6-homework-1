@@ -53,7 +53,7 @@ $(function() {
     console.groupEnd();
     
     // The audio features we want to show
-    var keys = ["danceability", "energy", "acousticness"]
+    var keys = ["danceability", "energy", "acousticness", "speechiness", "loudness"]
     
     // Display the audio features
     keys.map(function(key, i) {
