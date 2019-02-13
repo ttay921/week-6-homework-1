@@ -84,50 +84,29 @@ app.get('/category-playlists', function (request, response) {
     },
   ];
   
-//   countries.forEach((country) => {
-//     console.log(country);
-    
-//     console.log(new Date());
-    
+  
+  countries.forEach((c) => {
     spotifyApi.getPlaylistsForCategory(
       'jazz', 
-      { country: countries[0].code, limit : 10 }
+      { country: c.code, limit : 10 }
     )
       .then((data) => {
-
-        countries[0].data = data.body;
-      
-        spotifyApi.getPlaylistsForCategory(
-          'jazz', 
-          { country: countries[1].code, limit : 10 }
-        )
-          .then((data) => {
-
-            countries[1].data = data.body;
-          
-            response.send(countries)
-
-
-        }, function(err) {
-          console.error(err);
-        });
-      
-
+        c.data = data.body;
     }, function(err) {
       console.error(err);
     });
-    
-  // });
+  });
   
-//   spotifyApi.getPlaylistsForCategory('jazz', { country: 'fr', limit : 10 })
-//     .then(function(data) {
-    
-//     // Send the list of playlists
-//     response.send(data.body.playlists);
-    
-//   }, function(err) {
-//     console.error(err);
-//   });
+  while (
+    countries.filter(c => c.data !== undefined).length 
+    === countries.length
+  ) {
+    console.log(countries);
+  }
+  
+  response.send(countries);
+  
+
 });
 
 app.get('/audio-features', function (request, response) {
