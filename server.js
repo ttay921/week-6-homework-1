@@ -64,6 +64,28 @@ app.get('/category-playlists', function (request, response) {
   
   // Get playlists from a browse category
   // Find out which categories are available here: https://beta.developer.spotify.com/console/get-browse-categories/
+  // country name like "sweden"
+  // country code like "SE"
+  //let countries = ["Sweden", "France"];
+  
+  // let countriesShort = {
+  //   se: "sweden",
+  //   fr: "france",
+  // }
+  
+  let countries = [
+    {
+      name: "Sweden",
+      code: "SE"
+    },
+    {
+      name: "France",
+      code: "FR"
+    },
+  ];
+  
+  
+  
   spotifyApi.getPlaylistsForCategory('jazz', { country: 'fr', limit : 10 })
     .then(function(data) {
     
