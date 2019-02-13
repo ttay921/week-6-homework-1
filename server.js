@@ -62,17 +62,7 @@ app.get('/search-track', function (request, response) {
 
 app.get('/category-playlists', function (request, response) {
   
-  // Get playlists from a browse category
-  // Find out which categories are available here: https://beta.developer.spotify.com/console/get-browse-categories/
-  // country name like "sweden"
-  // country code like "SE"
-  //let countries = ["Sweden", "France"];
-  
-  // let countriesShort = {
-  //   se: "sweden",
-  //   fr: "france",
-  // }
-  
+  // Make an initial list of countries
   let countries = [
     {
       name: "Sweden",
@@ -85,19 +75,23 @@ app.get('/category-playlists', function (request, response) {
   ];
   
   
+  // Get the playlists for the given category for each country
   countries.forEach((c) => {
     spotifyApi.getPlaylistsForCategory(
       'jazz', 
       { country: c.code, limit : 10 }
     )
       .then((data) => {
+        // Persist the data on this country object
         c.data = data.body;
     }, function(err) {
       console.error(err);
     });
   });
   
-  
+  // Check will see if we have .data on all the country objects
+  // which indicates all requests have returned successfully.
+  // If the lengths don't match then we call check again in 500ms
   let check = () => {
     if (countries.filter(c => c.data !== undefined).length 
     !== countries.length) {
@@ -107,11 +101,8 @@ app.get('/category-playlists', function (request, response) {
     }
   }
   
+  // Call check so we don't send a response until we have all the data back
   check();
-  
-  
-  
-
 });
 
 app.get('/audio-features', function (request, response) {
