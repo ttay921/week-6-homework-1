@@ -97,14 +97,19 @@ app.get('/category-playlists', function (request, response) {
     });
   });
   
-  while (
-    countries.filter(c => c.data !== undefined).length 
-    === countries.length
-  ) {
-    console.log(countries);
+  
+  let check = () => {
+    if (countries.filter(c => c.data !== undefined).length 
+    !== countries.length) {
+      setTimeout(check, 500);
+    } else {
+      response.send(countries);
+    }
   }
   
-  response.send(countries);
+  check();
+  
+  
   
 
 });
