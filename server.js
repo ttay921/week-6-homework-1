@@ -84,7 +84,23 @@ app.get('/category-playlists', function (request, response) {
     },
   ];
   
-  
+  countries.forEach((country) => {
+    console.log(country);
+    
+    spotifyApi.getPlaylistsForCategory(
+      'jazz', 
+      { country: country.code, limit : 10 }
+    )
+      .then((data) => {
+
+      // Send the list of playlists
+      response.send(data.body.playlists);
+
+    }, function(err) {
+      console.error(err);
+    });
+    
+  });
   
   spotifyApi.getPlaylistsForCategory('jazz', { country: 'fr', limit : 10 })
     .then(function(data) {
