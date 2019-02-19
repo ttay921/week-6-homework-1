@@ -3,7 +3,7 @@
 
 $(function() {
     
-  $.get('/search-track', function(data) {
+  fetch('/search-track').then(resp => resp.json()).then((data) => {
     // "Data" is the object we get from the API. See server.js for the function that returns it.
     console.group('%cResponse from /search-track', 'color: #F037A5; font-size: large');
     console.log(data);
@@ -19,12 +19,13 @@ $(function() {
     // Display the artist name
     var artists = '';
     
-    data.artists.forEach(function(element) {
-      artists = artists + element.name + ' ';
+    data.artists.forEach(function(item) {
+      artists = artists + item.name + ' ';
     });
     
-    var artistName = $('<h5>' + artists + '</h5>');
-    artistName.appendTo('#search-track-container');
+    let h5 = document.createElement('h5');
+    h5.innerText = artists;
+    document.getElementById('search-track-container').append(h5);
     
     // Display the album art
     var img = $('<img/>');
