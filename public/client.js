@@ -12,8 +12,11 @@ $(function() {
     // Display the track name
     var trackName = $('<h3><a href="' + data.external_urls.spotify + '" target="blank">' + data.name + '</a></h3>'
       //`<h3><a href="${data.external_urls.spotify}">${data.name}</a></h3>`
-      // document.createElement("<h3>")
-      // 
+      // var trackNameLink = document.createElement("a") 
+      // var trackName = document.createElement("h3") 
+            //trackNameLink.setattribute('href', data.external_urls.spotify) 
+            //trackNameLink.setattribut('target', "blank")
+      //
     );
     trackName.appendTo('#search-track-container');
     
