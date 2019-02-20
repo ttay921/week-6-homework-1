@@ -12,12 +12,14 @@ $(function() {
     // Display the track name
     //var trackName = $('<h3><a href="' + data.external_urls.spotify + '" target="blank">' + data.name + '</a></h3>'
       //<h3><a href="${data.external_urls.spotify}">${data.name}</a></h3>`
-      var trackNameLink = document.createElement("a") ; 
+      
       var trackName = document.createElement("h3");
+      var trackNameLink = document.createElement("a") ;
+      trackName.appendChild(trackNameLink);
             trackNameLink.setattribute('href', data.external_urls.spotify + data.name ) ;
             trackNameLink.setattribute('target', "blank") ;
-    
-      trackName.appendChild();
+      
+      document.getElementById("search-track-container").appendChild(trackName);
     
     //);
     //trackName.appendTo('#search-track-container');
@@ -48,7 +50,8 @@ $(function() {
     // Display the covers of the playlists
     data
       .forEach((c) => {
-      $('#category-playlists-container').append(`<br><h1>${c.name}</h1><br>`)
+      document.getElementbyId("category-playlists-container").appendChild();
+        //`<br><h1>${c.name}</h1><br>`)
       c.data.playlists.items.map(function(playlist, i) {
       var img = $('<img class="cover-image"/>');
       img.attr('src', playlist.images[0].url);
