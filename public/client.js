@@ -10,18 +10,19 @@
     console.groupEnd();
     
     // Display the track name
+    
+      
+      
+      var link= document.createElement("a") ;
+            document.querySelector(link).setAttribute('href', data.external_urls.spotify ) ;
+            document.querySelector(link).setAttribute('target', "blank") ;
+      var trackName= document.createTextNode(data.name); 
+      link.appendChild(trackName);
+      //var trackName = document.createElement("h3") + link ;
+      document.getElementById("search-track-container").appendChild(trackName);
+    
     //var trackName = $('<h3><a href="' + data.external_urls.spotify + '" target="blank">' + data.name + '</a></h3>'
       //<h3><a href="${data.external_urls.spotify}">${data.name}</a></h3>`
-      
-      //var trackName = document.createElement("h3") + l ;
-      //var l= document.createElement("a") ;
-            //document.querySelector(l).setAttribute('href', data.external_urls.spotify + data.name ) ;
-           // document.querySelector(l).setAttribute('target', "blank") ;
-      document.getElementById("search-track-container")
-          .appendChild(document
-                       .createElement
-                         ('<h3><a href="' + data.external_urls.spotify + '" target="blank">' + data.name + '</a></h3>');
-    
     //);
     //trackName.appendTo('#search-track-container');
     
@@ -37,9 +38,11 @@
     document.getElementById('search-track-container').append(h5);
     
     // Display the album art
-    var img = $('<img/>');
+    var img = document.createElement('img');
     img.attr('src', data.album.images[0].url);
     img.appendTo('#search-track-container');
+  document.querySelector('img').setAttribute('src', data.album.images[0].url);
+  document.getElementById('category-playlists-container').appendChild(img);
   });
   
   fetch ('/category-playlists'). then(resp => resp.json ()). then((data) => {
@@ -54,7 +57,9 @@
       document.getElementbyId("category-playlists-container").appendChild();
         //`<br><h1>${c.name}</h1><br>`)
       c.data.playlists.items.map(function(playlist, i) {
-      var img = $('<img class="cover-image"/>');
+      var img = document.createElement('img'); 
+      //document.img.appendChild(getElementByClass(cover-image));
+        //$('<img class="cover-image"/>');
       //img.attr('src', playlist.images[0].url);
       //img.appendTo('#category-playlists-container');
     document.querySelector('img').setAttribute('src', playlist.images[0].url);
