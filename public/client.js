@@ -13,12 +13,14 @@
     //var trackName = $('<h3><a href="' + data.external_urls.spotify + '" target="blank">' + data.name + '</a></h3>'
       //<h3><a href="${data.external_urls.spotify}">${data.name}</a></h3>`
       
-      var trackName = document.createElement("h3");
-      var trackNameLink = document.createElement("a") ;
-            document.trackNameLink.setattribute('href', data.external_urls.spotify + data.name ) ;
-            document.trackNameLink.setattribute('target', "blank") ;
-      document.trackName.appendChild(trackNameLink);
-      document.getElementById("search-track-container").appendChild(trackName);
+      //var trackName = document.createElement("h3") + l ;
+      //var l= document.createElement("a") ;
+            //document.querySelector(l).setAttribute('href', data.external_urls.spotify + data.name ) ;
+           // document.querySelector(l).setAttribute('target', "blank") ;
+      document.getElementById("search-track-container")
+          .appendChild(document
+                       .createElement
+                         ('<h3><a href="' + data.external_urls.spotify + '" target="blank">' + data.name + '</a></h3>');
     
     //);
     //trackName.appendTo('#search-track-container');
