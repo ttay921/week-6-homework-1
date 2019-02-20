@@ -14,11 +14,10 @@
       
       
       var link= document.createElement("a") ;
-            document.querySelector(link).setAttribute('href', data.external_urls.spotify ) ;
-            document.querySelector(link).setAttribute('target', "blank") ;
+            document.link.setAttribute('href', data.external_urls.spotify ) ;
+            document.link.setAttribute('target', "blank") ;
       var trackName= document.createTextNode(data.name); 
       link.appendChild(trackName);
-      //var trackName = document.createElement("h3") + link ;
       document.getElementById("search-track-container").appendChild(trackName);
     
     //var trackName = $('<h3><a href="' + data.external_urls.spotify + '" target="blank">' + data.name + '</a></h3>'
@@ -35,14 +34,12 @@
     
     let h5 = document.createElement('h5');
     h5.innerText = artists;
-    document.getElementById('search-track-container').append(h5);
+    document.getElementById('search-track-container').appendChild(h5);
     
     // Display the album art
     var img = document.createElement('img');
-    img.attr('src', data.album.images[0].url);
-    img.appendTo('#search-track-container');
-  document.querySelector('img').setAttribute('src', data.album.images[0].url);
-  document.getElementById('category-playlists-container').appendChild(img);
+    document.querySelector('img').setAttribute('src', data.album.images[0].url);
+    document.getElementById('search-track-container').append(img);
   });
   
   fetch ('/category-playlists'). then(resp => resp.json ()). then((data) => {
@@ -63,7 +60,7 @@
       //img.attr('src', playlist.images[0].url);
       //img.appendTo('#category-playlists-container');
     document.querySelector('img').setAttribute('src', playlist.images[0].url);
-    document.getElementById('category-playlists-container').appendChild(img);
+    document.getElementById('category-playlists-container').append(img);
     });
     })
   });
@@ -81,7 +78,7 @@
     keys.map(function(key, i) {
       if (data.hasOwnProperty(key)) {
         var feature = $('<p><span class="big-number">' + data[key] + ' </span>'  + key + '</p>');
-        document.getElementById('artist-container').appendChild(feature);
+        document.getElementById('artist-container').append(feature);
       }
     });
   });
@@ -97,7 +94,7 @@
     //img.attr('src', data.images[0].url);
     //img.appendTo('#artist-container');
     var img = document.createElement('img');
-    document.getElementsByTagName('img')[0].setAttribute ('class', "circle-image"); 
+    document.getElementsByTagName('img')[0].setAttribute('class', "circle-image"); 
     document.querySelector('img').setAttribute('src', data.images[0].url);
     document.getElementById('artist-container').appendChild(img);
     
